@@ -38,6 +38,7 @@ const html = `<html>
     renderer.render(scene, camera);
   });
 
+  log.console("write example.png")
   await page.screenshot({ path: "example.png" });
 
   await browser.close();
