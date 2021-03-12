@@ -34,6 +34,7 @@ ADD package.json /home/${UNAMEX}/
 # #RUN /bin/bash bash_scripts/install-simple-nodejs-app.sh
 # expose port 3000 for API
 EXPOSE 3000
+RUN mkdir /var/www
 RUN mkdir /var/www/brain-gfx-3js
 ADD *.js /var/www/brain-gfx-3js
 ADD config /var/www/brain-gfx-3js/config
