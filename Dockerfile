@@ -45,6 +45,7 @@ RUN curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.re
 RUN curl -sL https://rpm.nodesource.com/setup_12.x |  bash -
 RUN yum -y install yarn
 RUN yum -y install nodejs
+RUN npm install
 
 # set up a script that run whenever the docker is started.
 # it will run the forever service to start the nsfcareer-api-service
