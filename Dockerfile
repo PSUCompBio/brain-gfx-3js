@@ -36,10 +36,10 @@ ADD package.json /home/${UNAMEX}/
 EXPOSE 3000
 RUN mkdir /var/www
 RUN mkdir /var/www/brain-gfx-3js
-ADD *.js /var/www/brain-gfx-3js
+ADD *.js /var/www/brain-gfx-3js/
 ADD config /var/www/brain-gfx-3js/config
-ADD README.md /var/www/brain-gfx-3js
-ADD package.json /var/www/brain-gfx-3js
+ADD README.md /var/www/brain-gfx-3js/
+ADD package.json /var/www/brain-gfx-3js/
 RUN cd /var/www/brain-gfx-3js/
 RUN curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
 RUN curl -sL https://rpm.nodesource.com/setup_12.x |  bash -
