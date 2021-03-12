@@ -1,5 +1,5 @@
-#FROM amazonlinux:2
-FROM public.ecr.aws/lambda/nodejs:12
+FROM amazonlinux:2
+# FROM public.ecr.aws/lambda/nodejs:12
 
 ARG UNAMEX
 ARG INSTANCE_TYPE
@@ -16,6 +16,7 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | b
 RUN . ~/.nvm/nvm.sh
 
 # Setup home environment
+RUN pwd
 RUN useradd ${UNAMEX}
 
 WORKDIR /home/${UNAMEX}
@@ -29,10 +30,20 @@ ADD config /home/${UNAMEX}/config
 ADD README.md /home/${UNAMEX}/
 ADD package.json /home/${UNAMEX}/
 
-
+# set up nodejs
 # #RUN /bin/bash bash_scripts/install-simple-nodejs-app.sh
 # expose port 3000 for API
 EXPOSE 3000
+RUN mkdir /var/www/brain-gfx-3js
+ADD *.js /var/www/brain-gfx-3js
+ADD config /var/www/brain-gfx-3js/config
+ADD README.md /var/www/brain-gfx-3js
+ADD package.json /var/www/brain-gfx-3js
+RUN cd /var/www/brain-gfx-3js/
+RUN curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
+RUN curl -sL https://rpm.nodesource.com/setup_12.x |  bash -
+RUN yum -y install yarn
+RUN yum -y install nodejs
 
 # set up a script that run whenever the docker is started.
 # it will run the forever service to start the nsfcareer-api-service
