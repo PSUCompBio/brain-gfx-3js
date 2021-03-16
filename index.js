@@ -1,5 +1,15 @@
 "use strict";
-console.log("Loading hello world function");
+console.log("Loading clinical image creation function");
+
+const bodyParser = require("body-parser");
+const writeImage = require("./writeImage.js");
+const parseSummaryLocations = require("./parseSummaryLocations.js")
+const {uploadToS3, uploadToS3SingleImage, getFileFromS3} = require("./UploadToS3.js")
+const getLabeledImage = require("./GetLabeledImage.js")
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 exports.handler = async (event) => {
   let name = "you";
