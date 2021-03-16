@@ -13,6 +13,6 @@ git clone -b move-to-lambda https://github.com/PSUCompBio/brain-gfx-3js.git
 # clone master branch
 #git clone https://github.com/PSUCompBio/brain-gfx-3js.git
 cd brain-gfx-3js
-sudo docker build  --build-arg UNAMEX=ec2-user -t clincialimg .
+sudo docker build --build-arg -t clincialimg .
 cd /home/$UNAMEX
-sudo chown -R $UNAMEX \*
+sudo chown -R $UNAMEX *
